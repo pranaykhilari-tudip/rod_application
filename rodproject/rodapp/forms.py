@@ -43,3 +43,18 @@ class UserSignupForm(SignupForm):
         for key in ['first_name', 'last_name', 'email', 'password1']:
             new_order[key] = original_fields[key]
         self.fields = new_order
+
+class UserPasswordResetForm(ResetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+
+        self.fields['email'].widget.attrs['class'] = 'email-field email-large'
+
+class UserPasswordResetFromKey(ResetPasswordKeyForm):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')
+        super(UserPasswordResetFromKey, self).__init__(*args, **kwargs)
+
+        self.fields['password1'].widget.attrs['class'] = 'email-field email-large'
+        self.fields['password2'].widget.attrs['class'] = 'email-field email-large'
